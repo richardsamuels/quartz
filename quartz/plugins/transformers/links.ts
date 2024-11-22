@@ -129,7 +129,8 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) 
                   isInternal &&
                   node.children.length === 1 &&
                   node.children[0].type === "text" &&
-                  !node.children[0].value.startsWith("#")
+                  !node.children[0].value.startsWith("#") &&
+                  !classes.includes("tag-link")
                 ) {
                   node.children[0].value = path.basename(node.children[0].value)
                 }

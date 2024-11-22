@@ -44,7 +44,12 @@ const Darkmode: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) 
   )
 }
 
-Darkmode.beforeDOMLoaded = darkmodeScript
-Darkmode.css = styles
+export const DarkmodeAlwaysQuiet: QuartzComponent = (_props: QuartzComponentProps) => {
+  const Darkmode = (_props: QuartzComponentProps) => {}
+
+  Darkmode.beforeDOMLoaded = darkmodeScript
+  Darkmode.css = styles
+  return Darkmode
+}
 
 export default (() => Darkmode) satisfies QuartzComponentConstructor

@@ -127,6 +127,7 @@ svg {
 
   & div > a:hover {
     color: var(--tertiary);
+    opacity: 1.0 !important;
   }
 
   & div > button {

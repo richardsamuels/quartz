@@ -75,6 +75,8 @@ a {
 
   &:hover {
     color: var(--tertiary) !important;
+    opacity: 1.0 !important;
+
   }
 
   &.internal {

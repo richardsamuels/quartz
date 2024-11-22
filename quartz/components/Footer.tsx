@@ -2,6 +2,7 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import style from "./styles/footer.scss"
 import { version } from "../../package.json"
 import { i18n } from "../i18n"
+import * as romans from "romans"
 
 interface Options {
   links: Record<string, string>
@@ -31,3 +32,31 @@ export default ((opts?: Options) => {
   Footer.css = style
   return Footer
 }) satisfies QuartzComponentConstructor
+
+interface CopyrightProps {
+  links: Record<string, string>
+  owner: string
+}
+
+export function CopyrightFooter(opts: CopyrightProps) {
+  const Footer: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
+    const year = romans.romanize(new Date().getFullYear())
+    const links = opts?.links ?? []
+    return (
+      <footer class={`${displayClass ?? ""}`}>
+        <p>
+          (c) {year} {opts.owner}
+        </p>
+        <ul>
+          {Object.entries(links).map(([text, link]) => (
+            <li>
+              <a href={link}>{text}</a>
+            </li>
+          ))}
+        </ul>
+      </footer>
+    )
+  }
+
+  return Footer
+}
